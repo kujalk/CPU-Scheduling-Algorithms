@@ -1,0 +1,58 @@
+Simulating different CPU scheduling algorithms using LED bulbs and Arduino
+***************************************************************************
+
+
+Project - CPU scheduling testing platform to evaluate the efficiency of different algorithms using LED bulbs and Arduino
+
+Features -
+
+1.Users can able to change the scheduling algorithms and monitor the performance.
+2.Users can able to add processes to the job queue at any given time.
+
+Note - Blinking different color LED bulbs for different number of times are considered to be the processes in this system
+
+CPU scheduling algorithms tested in this project are,
+1.	First Come First Served
+2.	Round Robbin
+3.	Shortest Job First
+4.	Shortest Remaining Job First
+
+How this circuit works?
+In this circuit, I have programmed different scheduling algorithms in C language using Arduino.
+I have developed the code for First come first serve (FCFS), Shortest job first (SJF), Short remaining time (SJF Preemptive) 
+and Round robin algorithms.
+
+
+
+Burst time of 1s is simulated as one LED lit up.
+For Eg - If the burst time of Red LED is 10s then, it will lit up 10 times
+
+In this circuit we can able to select our preferred algorithm as we like. By making the following changes to the 2 switches,
+
+Select1      select2		    Result
+*******    ************	       *******************
+OFF	        OFF		FCFS
+OFF 	        ON		SJF-Non Preemptive
+ON	        OFF		SJF Preemptive (Shortest Remaining Job first)
+ON	        ON		Round Robin
+
+After power ON, "Select1" and "Select2" switches should be changed in order to select the preferred Algorithm 
+(select one algorithm at a time only)
+
+You can able to send any process at any given time for the execution after selecting the algorithm and by doing 
+the following, Power on particular LED switch and move the "send" switch to opposite direction (no matter "on" to "off" or "off" to "on") 
+because any change in the switch is detected using the code.
+(Here we have enabled "Pin2" as interrupt Pin and "send" button is associated with that pin. So any changes in "send" button 
+causes interrupt and make the CPU to execute interrupt service routine (ISR) which is the "change()" function.
+
+So if any interrupt is detected CPU will execute "change()" function.
+
+Note -
+
+Burst time of each LED (meaning each LED will lit up) -
+    a)RED-5 times
+    b)GREEN-10 times
+    c)BLUE-15 times
+    d)ORANGE-20 times
+
+All resistors are 10 K OHM
